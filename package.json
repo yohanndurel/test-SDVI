@@ -4,6 +4,7 @@
         "vue": "^2.6.8",
         "vue-loader": "^15.7.0",
         "vue-template-compiler": "^2.6.8",
+        "webpack-cli": "^4.6.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -13,5 +14,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "yarn": "^1.22.10"
     }
 }
