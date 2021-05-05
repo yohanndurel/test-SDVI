@@ -30,6 +30,7 @@ class Pizza
 
     /**
      * @var Collection
+     * @ORM\OneToMany(targetEntity=IngredientPizza::class, mappedBy="pizza")
      */
     private Collection $quantiteIngredients;
 
