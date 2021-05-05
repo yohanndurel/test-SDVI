@@ -16,7 +16,7 @@ class Pizza
 {
     /**
      * @var int
-     * @ORM\Column(name="id_pizza", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -30,6 +30,7 @@ class Pizza
 
     /**
      * @var Collection
+     * @ORM\OneToMany(targetEntity=IngredientPizza::class, mappedBy="pizza")
      */
     private Collection $quantiteIngredients;
 

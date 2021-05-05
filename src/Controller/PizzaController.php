@@ -41,8 +41,9 @@ class PizzaController extends AbstractController
      *
      * @return Response
      */
-    public function detailAction(int $pizzaId): Response
+    public function detailAction(int $pizzaId, PizzaDao $pizzaDao): Response
     {
-        return $this->render("Pizza/detail.html.twig");
+        $pizza = $pizzaDao->getDetailPizza($pizzaId);
+        return $this->render("Pizza/detail.html.twig", ["pizza" => $pizza]);
     }
 }
