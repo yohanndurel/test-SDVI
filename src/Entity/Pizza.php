@@ -34,11 +34,17 @@ class Pizza
     private Collection $quantiteIngredients;
 
     /**
+     * @ORM\OneToMany(targetEntity=IngredientPizza::class, mappedBy="pizza")
+     */
+    private $id_ingredientPizza;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->quantiteIngredients = new ArrayCollection();
+        $this->id_ingredientPizza = new ArrayCollection();
     }
 
     /**
@@ -104,5 +110,35 @@ class Pizza
     public function getQuantiteIngredients(): Collection
     {
         return $this->quantiteIngredients;
+    }
+
+    /**
+     * @return Collection|IngredientPizza[]
+     */
+    public function getIdIngredientPizza(): Collection
+    {
+        return $this->id_ingredientPizza;
+    }
+
+    public function addIdIngredientPizza(IngredientPizza $idIngredientPizza): self
+    {
+        if (!$this->id_ingredientPizza->contains($idIngredientPizza)) {
+            $this->id_ingredientPizza[] = $idIngredientPizza;
+            $idIngredientPizza->setPizza($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdIngredientPizza(IngredientPizza $idIngredientPizza): self
+    {
+        if ($this->id_ingredientPizza->removeElement($idIngredientPizza)) {
+            // set the owning side to null (unless already changed)
+            if ($idIngredientPizza->getPizza() === $this) {
+                $idIngredientPizza->setPizza(null);
+            }
+        }
+
+        return $this;
     }
 }

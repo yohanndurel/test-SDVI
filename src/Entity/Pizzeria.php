@@ -52,12 +52,18 @@ class Pizzeria
     private Collection $pizzaiolos;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Pizza::class)
+     */
+    private $id_pizza;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
         $this->pizzaiolos = new ArrayCollection();
+        $this->id_pizza = new ArrayCollection();
     }
 
     /**
@@ -188,5 +194,29 @@ class Pizzeria
     public function getPizzaiolos() :Collection
     {
         return $this->pizzaiolos;
+    }
+
+    /**
+     * @return Collection|Pizza[]
+     */
+    public function getIdPizza(): Collection
+    {
+        return $this->id_pizza;
+    }
+
+    public function addIdPizza(Pizza $idPizza): self
+    {
+        if (!$this->id_pizza->contains($idPizza)) {
+            $this->id_pizza[] = $idPizza;
+        }
+
+        return $this;
+    }
+
+    public function removeIdPizza(Pizza $idPizza): self
+    {
+        $this->id_pizza->removeElement($idPizza);
+
+        return $this;
     }
 }
